@@ -1,0 +1,187 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+
+\title{ Práctica 3 \\
+\begin{large}
+     Fundamentos de la Ciencia de Datos
+\end{large}
+}
+\author{Samuel Aós Paumard,\\
+Enrique Coronado Barco,\\
+Carmen Martínez Estévez,\\
+Alberto Martínez Ortega}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\maketitle
+
+\section{Ejericio 1}
+\textbf{La primera parte consiste en la realización de dos ejercicios en clase con ayuda del profesor:}
+\subsection{Apartado 1.1}
+\textbf{En el primero se va a realizar un análisis de clasificación de datos con R aplicando los conceptos vistos en el tema. De la misma muestra que se utilizó para hacer de forma manual el primer ejercicio de clasificación para datos cualitativos, se deberá obtener, utilizando la medida de Ganancia de información, mediante la medida de impureza de Gini, la función de clasificación.}
+
+Lo primero es cargar las librerías a utilizar. En este caso: ggplot2 (para tratamiento de gráficos complejos), rpart (conjunto de árboles de decisión), rpart.plot(para poder hacer un plot correcto de los datos de rpart).
+<<packetes2.1, results=hide>>=
+install.packages('ggplot2', repos="https://cran.rediris.es/")
+install.packages('rpart', repos="https://cran.rediris.es/")
+install.packages('rpart.plot', repos="https://cran.rediris.es/")
+library('ggplot2')
+library('rpart')
+library("rpart.plot")
+@
+Cargamos los datos desde el archivo de texto 'calificaciones' y observamos dichos datos: tenemos las notas de Teoría, Laboratorio y Práctica y queremos decidir qué calificación global se espera en función de las notas anteriores.
+<<cargadatos>>=
+calificaciones <- read.table("calificaciones.txt")
+print(calificaciones)
+@
+Convertimos la tabla de calificaciones a dataframe para que después estén correctamente formateados para su tratamiento.
+<<conversion1>>=
+muestra <- data.frame(calificaciones)
+print(muestra)
+@
+Utilizamos la función rpart para llevar a cabo la clasificación con los árboles de decisión. En concreto con el algoritmo de Hunt, vamos a construir uno.
+Le pasamos como parámetros el nombre de la función clasificadora, el conjunto de datos muestra, método class para la clasificación y el número mínimo de veces que hay que llegar a un nodo para que sea considerado.
+
+<<rpart1>>=
+clasificacion <- rpart(Calificacion~., data=muestra, method="class", minsplit=1)
+@
+Esto nos permite visualizar la medida de impureza de Gini, usada por defecto en rpart y dibujar la gráfica con dichos datos:
+<<fig=true>>=
+print(clasificacion)
+rpart.plot(clasificacion)
+
+@
+Gini nos dice que si extraemos dos elementos de una población al azar, entonces deben ser de la misma clase y la probabilidad de esto es 1 si la población es pura. Dicho esto, y fijándonos en los resultados, el texto nos ofrece la misma información que la imágen, solo que esta de una forma más agradable y comprensible.
+Fijémonos en esta para continuar la explicación. Tal y como se puede ver, antes de comenzar la clasificación, la probabilidad de población pura era de 0.67. Si nos fijamos en las notas de laboratorio, todos aquellos que no tienen una A o B, están suspensos. Después seguimos con otro de los atributos y nos encontramos con que si no sacas una A o B en práctica, estás suspenso siempre. En cambio si las sacas, estás 100% aprobado.
+
+\subsection{Apartado 1.2}
+\textbf{En el segundo, para los datos de un fichero .txt generado a partir de los datos de la muestra 2 utilizada para hacer el segundo ejercicio de clasificación para datos cuantitativos, hacer un análisis de regresión lineal.}
+En el apartado anterior hacíamos un análisis sobre datos cualitativos (con unas determinadas propiedades que les clasifican). En esta parte vamos a ver datos cuantitativos correspondientes a los radios ecuatoriales y densidades de los planetas interiores.
+Cargamos los datos a utilizar:
+
+<<cargardatos>>=
+planetas<-read.table("planetas.txt")
+print(planetas)
+@
+
+Convertimos los datos a dataframe:
+<<conversion11>>=
+muestra2<-data.frame(planetas)
+print(planetas)
+@
+
+Procedemos a hacer el análisis de regresión con los datos ya debidamente formateados. Lo hacemos con la función lm que se encarga de hacer análisis lineales en función de los parámetros pasados. 
+Estos son: las variables dependiente e independiente y el conjunto de datos.
+Con la función ggplot exponemos estos resultados. Podemos observar en la gráfica la recta de regresión y los 4 puntos que representan los 4 planetas tomados para este ejemplo. La mala distribución de los puntos y su dispersión hace muy difícil que esta recta pase cerca de todos los puntos, es decir, se aproxime a ellos, y por tanto sea una buena función clasificadora.
+<<fig=true>>=
+regresion<-lm(D~R, data=muestra2)
+ggplot(planetas, aes(x = D, y = R)) + geom_point(color='blue')+ geom_smooth(method = "lm", se = FALSE)
+@
+
+\section{Ejericio 2}
+\textbf{La segunda parte consiste en la realización de dos ejercicios:}
+\subsection{Apartado 2.1}
+\textbf{Desarrollo por parte de cada alumno del enunciado y la solución de un ejercicio en el que se realice un análisis con R de clasificación supervisada con árboles introduciendo modificaciones sobre el ejercicio hecho en clase.}
+
+Se he generado un archivo de texto con datos de alumnos referentes al número de asignaturas que estos cursan, su edad y el curso en el que se encuentran. El objetivo de las modificaciones introducidas es probar otros métodos de análisis y clasificación supervisada mediante árboles. Los métodos utilizados han sido:
+\begin{itemize}
+     \item class
+     \item poisson
+     \item anova
+     \item C50
+\end{itemize}
+
+
+Los paquetes \textit{rpart} y \textit{c50} serán necesarios para la ejecución de los distintos métodos, siendo rpart utilizado por los tres primeros y \textit{C50} específico de su método. Además se carga la librería \textit{rpart.plot} para una visualización más cómoda de los datos generados por rpart.
+<<packetes2.1, results=hide>>=
+install.packages("rpart",repos = "https://cran.rediris.es/")
+install.packages("rpart.plot",repos = "https://cran.rediris.es/")
+install.packages("C50",repos = "https://cran.rediris.es/")
+library(rpart)
+library(rpart.plot)
+library(C50)
+@
+
+Tras cargar los paquetes necesarios introduciremos en memoria los datos del fichero generado con la información del alumnado.
+<<lecturaAlumnos>>=
+alumnos = read.table("datos.txt")
+alumnos
+@
+
+Para garantizar el correcto funcionamiento establecemos el conjunto de datos leídos como un cuadro de datos en nuestras variables.
+<<>>=
+muestra = data.frame(alumnos)
+muestra
+@
+
+\subsubsection{Análisis mediante class}
+Como en el ejercicio uno, realizamos el análisis mediante class
+<<fig=true>>=
+clasificacion = rpart (curso~., data = muestra, method ="class",minsplit=1)
+clasificacion
+rpart.plot(clasificacion)
+@
+
+\subsubsection{Análisis mediante Poisson}
+Este análisis realiza de acuerdo a la distribución de Poisson, que se trata de la probabilidad de que ocurra cierto suceso a partir de su frecuencia media. Esto se ve reflejado en el resultado dado, en el que aparecen las frecuencias absolutas y el resultado de la probabilidad del suceso por cada nodo.
+<<fig=true>>=
+clasificacion = rpart (curso~., data = muestra, method ="poisson",minsplit=1)
+clasificacion
+rpart.plot(clasificacion)
+@
+
+\subsubsection{Análisis mediante Anova}
+El funcionamiento básico de anova consiste en el cálculo de la media de un conjunto de los valores como grupos para luego realizar una comparación de las varianzas de estas medias. En nuestro caso, respecto al árbol generado, el primer valor consiste en la media generada de cada grupo de acuerdo al elemento de su curso, y el segundo valor la probabilidad de este suceso en dicho nodo, desglosando el árbol y sus hijos de acuerdo a una agrupación por edad.
+<<fig=true>>=
+clasificacion = rpart (curso~., data = muestra, method ="anova",minsplit=1)
+clasificacion
+rpart.plot(clasificacion)
+@
+
+\subsubsection{Análisis mediante C50}
+C50 utiliza como medida de pureza, a la hora de generar las divisiones de los árboles, la entropía, además realiza poda del árbol de forma automática en caso de ser necesario.
+
+Para llevar a cabo esta ejecución utilizaremos nuevamente nuestro conjunto de datos de estudiantes, pero esta vez modificaremos los valores numéricos de la columna \textit{curso} por valores cualitativos en forma de cadena que los representen.
+<<>>=
+alu <- vector(length = dim(muestra)[1])
+alu[muestra$curso=="1"] <-"p"
+alu[muestra$curso=="2"] <-"s"
+alu[muestra$curso=="3"] <-"t"
+alu[muestra$curso=="4"] <-"c"
+muestra$curso <- factor(alu)
+@
+
+Con nuestra muestra modificada solo restaría ejecutar el algoritmo y mostrar sus resultados.
+<<fig=true>>=
+modelo = C5.0(curso~.,data = muestra)
+summary(modelo)
+plot(modelo)
+@
+
+
+\subsection{Apartado 2.2}
+\textbf{Desarrollo por parte de cada alumno del enunciado y la solución de un ejercicio en el que se realice un análisis con R de clasificación supervisada con regresión introduciendo modificaciones sobre el ejercicio hecho en clase}
+
+En el ejercicio 1 realizamos un análisis de regresión de una muestra de datos pequeña; ahora utilizaremos la muestra de los estudiantes y comprobaremos su regresión, junto con su correlación.
+<<packetes2.2, results=hide>>=
+install.packages("tidyverse",repos = "https://cran.rediris.es/")
+library(ggpubr)
+@
+
+Vamos a estudiar la correlación entre las asignaturas de los alumnos y sus cursos, pero esta vez, además de realizar la salida de forma gráfica usando lm, es decir la correlación lineal (rojo), utilizaremos la función \textit{stat-smooth} que nos muestra la correlación no lineal(azul) entre los valores.
+<<fig=true>>=
+<<lecturaAlumnos>>
+ggplot(alumnos, aes(x = asignaturas, y = curso)) + 
+  geom_point() +  
+  stat_smooth() +
+  stat_smooth(colour="red", method = lm, se= FALSE)
+@
+
+Además, vamos a analizar esto respecto de la correlación de los valores.
+<<>>=
+cor(alumnos$asignaturas, alumnos$curso)
+@
+
+El resultado de la correlación es prácticamente 0, es decir muy malo y por lo tanto se puede entender que, en la regresión resultante, tal y como se observa en la gráfica mostrada, tampoco será buena. Debido a estas situaciones puede ser interesante la inclusión de la regresión no lineal para observar la variación de la regresión respecto de los datos.
+
+\end{document}

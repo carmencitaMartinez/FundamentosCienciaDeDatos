@@ -1,0 +1,15 @@
+ Teoria Laboratorio Practicas Ensayo Entregas
+Javier 7.4 6.3 5.5 7.6 3.2
+Jorge 5.2 4.9 4.4 6 6.5
+Ivan 7.3 8.5 9.6 6.7 5.8
+Ruben 7.2 6 6 6 7
+Ana 5 5 5 6.5 5
+Sara 7 7 7 8.6 7
+Sonia 0 1 2 5.4 5
+Alvaro 8 7 4 5 6
+Carmen 7 6 7 8 8
+Jaime 0 1 2 0 0
+Elisa 10 10 10 9 10
+Arturo 8 9 8 2 8
+Beltran 7 8 9 9 9
+Samuel 8 7 8 9 9 

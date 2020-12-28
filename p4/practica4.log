@@ -1,0 +1,229 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.17)  22 DEC 2020 18:42
+entering extended mode
+**C:/Users/alber/Desktop/practica4/practica4.tex
+(C:/Users/alber/Desktop/practica4/practica4.tex
+LaTeX2e <2020-10-01> patch level 2
+L3 programming layer <2020-10-27> xparse <2020-03-03> ("C:\Program Files\MiKTeX
+\tex/latex/base\article.cls"
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+("C:\Program Files\MiKTeX\tex/latex/base\size10.clo"
+File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count175
+\c@section=\count176
+\c@subsection=\count177
+\c@subsubsection=\count178
+\c@paragraph=\count179
+\c@subparagraph=\count180
+\c@figure=\count181
+\c@table=\count182
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+) ("C:\Program Files\MiKTeX\tex/latex/base\inputenc.sty"
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+) (C:/PROGRA~1/R/R-40~1.3/share/texmf/tex/latex\Sweave.sty
+Package: Sweave 
+("C:\Program Files\MiKTeX\tex/latex/base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) ("C:\Program Files\MiKTeX\tex/latex/graphics\graphicx.sty"
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+("C:\Program Files\MiKTeX\tex/latex/graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) ("C:\Program Files\MiKTeX\tex/latex/graphics\graphics.sty"
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+("C:\Program Files\MiKTeX\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) ("C:\Program Files\MiKTeX\tex/latex/graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+("C:\Program Files\MiKTeX\tex/latex/graphics-def\pdftex.def"
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen139
+\Gin@req@width=\dimen140
+) (C:\Users\alber\AppData\Roaming\MiKTeX\tex/latex/fancyvrb\fancyvrb.sty
+Package: fancyvrb 2020/05/03 v3.6 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count183
+\FV@InFile=\read2
+\FV@TabBox=\box47
+\c@FancyVerbLine=\count184
+\FV@StepNumber=\count185
+\FV@OutFile=\write3
+) ("C:\Program Files\MiKTeX\tex/latex/base\textcomp.sty"
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) ("C:\Program Files\MiKTeX\tex/latex/base\fontenc.sty"
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+) (C:\Users\alber\AppData\Roaming\MiKTeX\tex/latex/ae\ae.sty
+Package: ae 2001/02/12 1.3 Almost European Computer Modern
+("C:\Program Files\MiKTeX\tex/latex/base\fontenc.sty"
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)))
+LaTeX Font Info:    Trying to load font information for T1+aer on input line 15
+.
+(C:\Users\alber\AppData\Roaming\MiKTeX\tex/latex/ae\t1aer.fd
+File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
+) ("C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def"
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count186
+\l__pdf_internal_box=\box48
+) (practica4.aux)
+\openout1 = `practica4.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+("C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count187
+\scratchdimen=\dimen141
+\scratchbox=\box49
+\nofMPsegments=\count188
+\nofMParguments=\count189
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count190
+\MPscratchDim=\dimen142
+\MPnumerator=\count191
+\makeMPintoPDFobject=\count192
+\everyMPtoPDFconversion=\toks19
+) ("C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty"
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+(C:\Users\alber\AppData\Roaming\MiKTeX\tex/generic/infwarerr\infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (C:\Users\alber\AppData\Roaming\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+
+(C:\Users\alber\AppData\Roaming\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.st
+y
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)) (C:\Users\alber\AppData\Roaming\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+(C:\Users\alber\AppData\Roaming\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (C:\Users\alber\AppData\Roaming\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) ("C:\Program Files\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty"
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+("C:\Program Files\MiKTeX\tex/generic/iftex\iftex.sty"
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+) (practica4-concordance.tex)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 17.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 17.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 17.
+LaTeX Font Info:    Trying to load font information for T1+aett on input line 2
+5.
+(C:\Users\alber\AppData\Roaming\MiKTeX\tex/latex/ae\t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+) [1
+
+{C:/Users/alber/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
+Overfull \hbox (0.64531pt too wide) in paragraph at lines 81--83
+\T1/aer/m/n/10 que cabe destacar los val-ores de los cen-troides del clus-ter o
+btenido C1=[1.25,1.50]
+ []
+
+[2]
+Overfull \hbox (3.27797pt too wide) in paragraph at lines 127--128
+[]\T1/aer/m/n/10 Una vez clasi-fi-ca-dos los datos de acuerdo a sus clus-teres,
+ ex-trae-mos la columna
+ []
+
+[3]
+LaTeX Font Info:    Trying to load font information for TS1+aer on input line 1
+58.
+(C:/PROGRA~1/R/R-40~1.3/share/texmf/tex/latex\ts1aer.fd
+File: ts1aer.fd 
+)
+LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <10> not available
+(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 158.
+[4]
+<practica4-011.pdf, id=23, 433.62pt x 433.62pt>
+File: practica4-011.pdf Graphic file (type pdf)
+<use practica4-011.pdf>
+Package pdftex.def Info: practica4-011.pdf  used on input line 249.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+[5]
+<practica4-graficas2.pdf, id=27, 433.62pt x 433.62pt>
+File: practica4-graficas2.pdf Graphic file (type pdf)
+<use practica4-graficas2.pdf>
+Package pdftex.def Info: practica4-graficas2.pdf  used on input line 279.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--281
+
+ []
+
+[6 <./practica4-011.pdf>] [7 <./practica4-graficas2.pdf>] [8]
+LaTeX Font Info:    Trying to load font information for TS1+aett on input line 
+341.
+(C:/PROGRA~1/R/R-40~1.3/share/texmf/tex/latex\ts1aett.fd
+File: ts1aett.fd 
+)
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+341.
+("C:\Program Files\MiKTeX\tex/latex/base\ts1cmtt.fd"
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <10> not available
+(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 341.
+
+[9] [10] [11] [12] [13] [14] [15] [16]
+<practica4-divisivo.pdf, id=78, 433.62pt x 433.62pt>
+File: practica4-divisivo.pdf Graphic file (type pdf)
+<use practica4-divisivo.pdf>
+Package pdftex.def Info: practica4-divisivo.pdf  used on input line 693.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+[17 <./practica4-divisivo.pdf>] [18] (practica4.aux) ) 
+Here is how much of TeX's memory you used:
+ 2559 strings out of 479799
+ 39194 string characters out of 2879558
+ 319060 words of memory out of 3000000
+ 19483 multiletter control sequences out of 15000+200000
+ 557428 words of font info for 72 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 80i,6n,85p,707b,333s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\alber\AppData\
+Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcst1000.pk> <C:\Users\alber\Ap
+pData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Program F
+iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmb10.pfb><C:/Program Files/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsltt10.
+pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Prog
+ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on practica4.pdf (18 pages, 159150 bytes).
+PDF statistics:
+ 122 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 20 words of extra memory for PDF output out of 10000 (max. 10000000)
+

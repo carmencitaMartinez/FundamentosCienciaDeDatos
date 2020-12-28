@@ -1,0 +1,158 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+
+\title{ Práctica 2 \\
+\begin{large}
+     Fundamentos de la Ciencia de Datos
+\end{large}
+}
+\author{Samuel Aós Paumard,\\
+Enrique Coronado Barco,\\
+Carmen Martínez Estévez,\\
+Alberto Martínez Ortega}
+\begin{document}
+\maketitle
+
+\section{Ejericio 1}
+\textbf{La primera parte consiste en la realización de un ejercicio en clase con ayuda del profesor en el que se va a realizar un análisis de asociación de Datos con R aplicando todos los conceptos vistos en el tema. Se resolverá, utilizando el algoritmo Apriori, el mismo problema que el visto en la descripción teórica del tema. Es decir, para la misma muestra1 que se utilizó para hacer de forma manual el primer ejercicio de asociación, se deberán obtener las asociaciones cuyo soporte sea igual o superior al 50\% y cuya confianza sea igual o superior al 80\%.}
+
+Comenzamos con la carga e instalación de las librerías necesarias. Para el primer ejercicio bastará con la instalación de arules,
+librería que nos servirá para la realización de la función a priori y que además contiene el conjunto de librerías para el 
+tratamiento de matrices necesario para su realización como Matrix.
+
+<<cargaLibreriasEj1>>=
+install.packages("arules")
+library(arules)
+@
+
+Una vez cargadas las librerías, introducimos los datos del problema en forma de matriz, para ello los introducimos en la función
+Matrix en forma vectorial, seguido de la indicación de filas y columnas y el método de construcción, en este caso filas, continuamos
+con las cabeceras de filas y columnas para separarlas de los datos y por último denotamos que la matriz se trata de una matriz dispersa
+con el parámetro \textit{isparse} con valor verdadero.
+
+<<cargaLibreriasEj1>>=
+muestra<-Matrix(c(1,1,0,1,1,
+                 1,1,1,1,0,
+                 1,1,0,1,0,
+                 1,0,1,1,0,
+                 1,1,0,0,0,
+                 0,0,0,1,0),
+        6,5, byrow=TRUE,
+        dimnames=list(c("Suceso 1","Suceso 2","Suceso 3",
+                        "Suceso 4","Suceso 5","Suceso 6"),
+                    c("Pan","Agua","Café","Leche","Narajas")),
+        sparse=TRUE)
+muestra
+@
+
+El siguiente paso es convertir las matriz \textit{isparse} en una matriz \textit{ngC}, ya que nos lo exige el paqute. 
+La conversión la realizamos con la función \textit{as}, a la que la pasamos la matriz generada (muestra) y el tipo al que la queremos converitr (nsparseMatrix). 
+La nueva matriz generada se mostrará con puntos donde había un 0 y líneas verticales donde había un 1. A continuación hacemos la traspuesta de la matriz. 
+Se muestran las dos matrices a continuación.
+
+<<nsparseMatrixEj1>>=
+muestrangCMatrix<-as(muestra, "nsparseMatrix")
+muestrangCMatrix
+transpmuestrangCMatrix<-t(muestrangCMatrix)
+transpmuestrangCMatrix
+@
+
+Ahora vamos a determinar las posibles transacciones que podemos realizar, nuevamente con la función \textit{as}. En este caso la matriz que queremos convertir es la última que 
+hemos generado (transpmuestrangCMatrix) y el tipo es transactions. Esta matriz la hemos denominado transacciones. Además con la función \textit{summary} obtenemos más detalles como son los ítems más
+frecuentes, media, mediana, máximo, mínimo\dots
+<<transaccionesEj1>>=
+transacciones<-as(transpmuestrangCMatrix,"transactions")
+transacciones
+summary(transacciones)
+@
+
+Para obtener las asociaciones vamos a utilizar el algoritmo \textit{apriori} pasándole la matriz transacciones y los parámetros confianza y soporte. La confianza nos va a decir si se van 
+a producir o no las asociaicones y el soporte lo frecuente que van a ser esas asociaciones. Con la función \textit{inspect}, a la que le pasamos el resultado que devuelve el algoritmo \textit{apriori}, 
+obtendremos las asociaciones.
+<<aprioriEj1>>=
+asociaciones<-apriori(transacciones, parameter=list(support=0.5, confidence=0.8))
+inspect(asociaciones)
+@
+
+
+\section{Ejericio 2}
+\textbf{La segunda parte consiste en el desarrollo por parte de cada grupo del enunciado y la solución de un ejercicio en el que se realice un análisis con R de asociación introduciendo modificaciones sobre el ejercicio hecho en clase.}
+
+Primero tomamos de un fichero txt los datos a representar en la matriz. También merece la pena remarcar la carga de la librearía \textit{arules} en cuyo interior está la función a priori que ejecuta todos los cáculos necesarios para presentarnos las asociaciones en función del porcentaje de soporte y confainza elegidos como mínimos.
+
+<<cargaDatos2>>=
+library("arules")
+datos<-read.transactions("datos.txt",sep=" ")
+@
+
+Podemos observar que los datos aquí representados se corresponden con los reflejados en el txt, habiendo sido formateados para su tratamiento con R.
+Esto lo hacemos con la función \textit{print} para imprimir y con la función \textit{as} para dar formato. Concretamente usamos una matriz de tipo 'ngCMatrix' que se muestra de la siguiente manera:
+
+<<imprimirDatos2>>=
+print(as(datos,"ngCMatrix"))
+@
+
+A continuación hacemos uso de la función \textit{apriori} que nos proporciona el paquete \textit{arules} anteriormente instalado.
+Con esto conseguimos devolver el resultado de dicho algoritmo en forma de asociaciones a la variable con ese mismo nombre para posteriormente visualizarlas con la función \textit{inspect()}
+<<apriori2>>=
+asociacion<-apriori(datos,parameter=list(support=0.5,confidence=0.8))
+inspect(asociacion)
+@
+
+%PARTE 2.2 %%%%%%%%%%%%%%%%%%%%%
+
+Para la parte 2 de esta mitad hemos obtenido un conjunto de datos a través de un generador de valores aleatorios, pudiendo optar entre el 0 y el 1, desarrollado en Python por nosotros mismos. Estos datos son pasados a un fichero '.csv', desde donde son leídos por el programa en R
+El código del generador se puede consultar en la misma carpeta de este documento bajo el nombre \textit{generarDatos.py}.
+Hemos optado por hacer el experimento con nombres de frutas tal y como se puede observar al crear la lista de nombres de los sucesos elementales.
+Incluimos también las librerías necesarias para llevar a cabo este proyecto. Son las siguientes:
+<<nombres2_2>>=
+library("Matrix")
+library("arules")
+frutas<- c("Frambuesa","Fresa","Naranja","Sandia","Melon");
+@
+
+Después importamos los datos desde el fichero csv mencionado a una variable para mantenerlos en el espacio de trabajo y poder operar con ellos.
+<<cargaDatoa2_2>>=
+datos<-scan("Frutas.csv",sep=";")
+@
+
+Después convertimos los datos a una matriz de tamaño (longitud(frutas))x(50). Organizamos la matriz en filas, en lugar de en columnas, para una muestra de datos escasa y le otorgamos a cada elemento de esa fila un Identificador que se corresponde con los nombres aportados en la linea anterior.
+
+<<convertirDatos2_2>>=
+matriz_datos<-Matrix(datos,ncol=length(frutas),nrow=50,byrow=T,sparse=T,
+dimnames=list(c(1:50),frutas));
+@
+
+Por último en este paso de formateo de datos, mostramos los resultados para asegurarnos de su correspondencia con el excel.
+
+<<visualizarDatos2_2>>=
+print(matriz_datos)
+@
+
+Para continuar con el ejemplo, vamos a realizar un análisis de la misma muestra de datos por medio de dos formas distintas. 
+Lo primero será empezar con el análisis de nuestros datos con el algoritmo apriori, que ya nos es conocido de la parte anterior.
+Inmediatamente después realizaremos el mismo cálculo con otra función llamada eclat. Dicha función es otra forma de llevar a cabo el algoritmo apriori sobre nuestra muestra y está específicamente recomendado para muestras más pequeñas al estar optimizado para ellas.
+
+\textbf{Parte 1}
+<<apriori2_2>>=
+asociacion<-apriori(as(t(as(matriz_datos,"nsparseMatrix")),"transactions"),
+parameter=list(support=0.2,confidence=0.6))
+inspect(asociacion)
+@
+
+\textbf{Parte 2}
+<<eclat2_2>>=
+asociacion2<-eclat(as(t(as(matriz_datos,"nsparseMatrix")),"transactions"),
+parameter=list(support=0.2,maxlen=15))
+inspect(asociacion2)
+@
+\newpage
+Como podemos observar los parámetros utilizados son:
+\begin{itemize}
+     \item En el caso del algoritmo apriori ==> Soporte=0.2 | Confianza=0.6
+     \item En el caso del algoritmo eclat ====> Soporte=0.2 | maxlen=15 (no menos de 15 apariciones del suceso elemental de entre el total de los datos)
+\end{itemize}
+Como podemos observar, al no estar la muestra lo suficientemente bien diseñada para que este tipo de apariciones ocurran, sino que se ha diseñado aleatoriamente, obtenemos unos valores muy bajos de soporte y confianza en ambos algoritmos. Esto tiene como consecuencia el haber tenido que usar unos valores tan bajos en ambos casos para poder tener datos que reflejar en esta visualización.
+
+\end{document}

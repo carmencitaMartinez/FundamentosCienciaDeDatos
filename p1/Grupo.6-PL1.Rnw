@@ -1,0 +1,216 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\title{ Práctica 1 \\
+\begin{large}
+     Fundamentos de la Ciencia de Datos
+\end{large}
+}
+\author{Samuel Aós Paumard,\\
+Enrique Coronado Barco,\\
+Carmen Martínez Estévez,\\
+Alberto Martínez Ortega}
+\begin{document}
+\maketitle
+
+\section{Ejericio 1}
+\textbf{Realización de un ejercicio en clase con ayuda del profesor en el que se va a realizar un análisis con R de descripción de Datos aplicando todos los conceptos vistos en el tema. Para realizar el ejercicio vamos a utilizar dos ficheros de datos:}
+\subsection{}
+\textbf{El primer fichero de datos será de tipo .txt, es decir, de texto plano, y estará formado por los datos de los satélites menores de Urano1 que hemos utilizado en la descripción teórica del tema. Lo denominaremos satelites.txt. El objetivo es obtener, utilizando R, los valores de las mismas magnitudes cuyo valor hemos calculado de forma manual.}
+
+Comenzamos con la carga de datos del fichero satelites.txt de la misma forma que vimos durante la clase.
+<<>>=
+satelites<-read.table("satelites.txt")
+@
+
+Del conjunto de datos extraemos los valores de los radios para su tratamiento, asi como el número de valores que encontramos en esta columna de la tabla de satélites.
+<<>>=
+Radio<-satelites$Radio
+Radio
+size_1<-length(Radio)
+@
+
+Calculamos las frecuencias para los valores de los radios.
+<<>>=
+frec_abs_1<-table(Radio)
+frec_abs_1
+frec_abs_acum_1<-cumsum(frec_abs_1)
+frec_abs_acum_1
+frec_rel_1<-table(Radio)/size_1
+frec_rel_1
+frec_rel_acum_1<-cumsum(frec_rel_1)
+frec_rel_acum_1
+@
+
+Calculamos la media y la mediana, mínimos y máximos de los valores, el rango, la desviación tipica y la varianza.
+<<>>=
+media_1<-mean(Radio)
+media_1
+mediana_1<-median(Radio)
+mediana_1
+minimo_1<-min(Radio)
+minimo_1
+maximo_1<-max(Radio)
+maximo_1
+rango_1<-range(Radio)
+rango_1
+desv_tip_1<-sqrt((sd(Radio)^2)*(size_1-1)/size_1)
+desv_tip_1
+varianza_1<-(var(Radio)*(size_1-1))/size_1
+varianza_1
+@
+
+Para acabar con el tratamiento de los datos calculamos los cuartiles.
+<<>>=
+cuart1_1<-quantile(Radio,0.25)
+cuart1_1
+cuart2_1<-quantile(Radio,0.5)
+cuart2_1
+cuart3_1<-quantile(Radio,0.75)
+cuart3_1
+cuart4_1<-quantile(Radio,1)
+cuart4_1
+cuant54_1<-quantile(Radio,0.54)
+cuant54_1
+@
+
+\subsection{}
+\textbf{El segundo fichero de datos será de tipo .sav, es decir, un fichero de datos procedente de SPSS. Se denomina cardata.sav y estará formado por datos de automóviles, como su consumo en mpg (millas por galón), cilindrada, aceleración, año de fabricación, modelo, etc.}
+
+%A diferencia del caso anterior el modelo de entrada que tenemos viene dado por un archivo generado en spss (.sav) y, por lo tanto, la función de lectura que tenemos que implementar es distinta a la del ejercicio anterior que leía de archivos de texto. Ahora utilizaremos read_sav proveniente de la libreria \textit{haven}.
+
+<<>>=
+install.packages("haven")
+library("haven")      # Librería para la tabla de valores estadísticos
+dataset <- read_sav("cardata.sav")
+@
+
+De este conjunto de datos extraemos los valores de millas por galon (mpg) y, justo despues, para evitar los posibles errores estadísticos provenientes de valores nulos, limpiamos el conjunto de ellos.
+<<>>=
+mpg<-dataset$mpg
+mpg<-mpg[!is.na(mpg)]
+size_2<-length(mpg)
+@
+
+Tras esto volvemos a repetir las operaciones del ejercicio anterior. \\
+Calculamos las frecuencias para los valores de los radios.
+<<>>=
+frec_abs_2<-table(mpg)
+frec_abs_2
+frec_abs_acum_2<-cumsum(frec_abs_2)
+frec_abs_acum_2
+frec_rel_2<-(table(mpg)/size_2)
+frec_rel_2
+frec_rel_acum_2<-cumsum(frec_rel_2)
+frec_rel_acum_2
+@
+
+Calculamos la media y la mediana, mínimos y máximos de los valores, el rango, la desviación típica y la varianza.
+<<>>=
+media_2<-mean(mpg)
+media_2
+mediana_2<-median(mpg)
+mediana_2
+desv_tip_2<-sd(mpg)
+desv_tip_2
+var_2<-var(mpg)
+var_2
+minimo_2<-min(mpg)
+minimo_2
+maximo_2<-max(mpg)
+maximo_2
+rango_2<-range(mpg)
+rango_2
+@
+
+Para acabar con el tratamiento de los datos calculamos los cuartiles.
+<<>>=
+cuart1_2<-quantile(mpg,0.25)
+cuart1_2
+cuart2_2<-quantile(mpg,0.5)
+cuart2_2
+cuart3_2<-quantile(mpg,0.75)
+cuart3_2
+cuart4_2<-quantile(mpg,1)
+cuart4_2
+cuant54_2<-quantile(mpg,0.54)
+cuant54_2
+@
+
+%---------------------------------------------------------------%
+%                             EJERCICIO 2                       %
+%---------------------------------------------------------------%
+
+\section{Ejericio 2}
+\textbf{Desarrollo por parte de cada grupo del enunciado y la solución de un ejercicio en el que se realice un análisis con R de descripción de Datos introduciendo modificaciones sobre el ejercicio hecho en clase (por ejemplo: los datos se leen desde un fichero generado con Excel o los ficheros que hay en un directorio se listan con la función dir().}
+
+Las mejoras implementadas para esta segunda parte del ejercicio son la carga de datos desde un fichero excel y la presentación de los datos de una forma más ordenada.
+
+Se pretende estudiar, mediante los datos contenidos en un fichero \textit{distacias.xlsx}, las distancias recorridas por una muestra de la población española de las distancias recorridas en sus viajes a lo largo del verano. Con estos datos y junto a un conjunto de nuevas librerías se llevará a cabo el estudio.
+Para llevar a cabo las mejoras se requiere de las siguientes librerías:
+\begin{itemize}
+     \item \texttt{readxl:} para leer del fichero Excel los datos
+     \item \texttt{pastecs:} para realizar los cálculos de distintos valores como media y mediana y mínimos y máximos.
+     \item \texttt{dplyr:} para trabajar con tablas y poder concatenar columnas con su función mutate.
+\end{itemize}
+
+<<>>=
+#Instalamos las librerías necesarias
+install.packages("readxl")  #Lectura de fichero Excel
+install.packages("pastecs") #Realiza calculos (media, mediana, ...)
+install.packages("dplyr")   #Mutate - concatencación de columnas
+
+#Importamos las librerías instaladas previamente
+library("readxl") 
+library("pastecs")
+library("dplyr")
+@
+
+Para podeer leer los datos desde el Excel hemos implementado lo siguiente:
+<<>>=
+# La función file.choose() abre un explorador de archivos
+# que permite elegir el fichero Excel deseado
+datosExcel<-read_excel(file.choose(),sheet="Hoja1")  
+distancias<-datosExcel$dis
+size_3<-length(distancias)
+distancias
+@
+
+Realizamos los cálculos de las frecuencias y los cuartiles como hicimos anteriormente
+<<>>=
+frec_abs_3<-table(distancias)
+frec_abs_acum_3<-cumsum(frec_abs_3)
+frec_rel_3<-table(distancias)/size_3
+frec_rel_acum_3<-cumsum(frec_rel_3)
+
+cuart1_3<-quantile(distancias,0.25)
+cuart2_3<-quantile(distancias,0.5)
+cuart3_3<-quantile(distancias,0.75)
+cuart4_3<-quantile(distancias,1)
+cuant54_3<-quantile(distancias,0.54)
+@
+
+Para mostrar las frecuencias todas juntas y de una forma más visual hemos creado la siguiente tabla.
+<<>>=
+frecuencias_3<-data.frame(table(distancias))
+frecuencias_3<-mutate(frecuencias_3,frec_abs_acum_3,frec_rel_3,frec_rel_acum_3)
+frecuencias_3
+@
+
+A parte hemos creado otra tabla para mostrar la media, la varianza, la desviación típica, el rango, la mediana, el mínimo y el máximo.
+<<>>=
+tabla_3<-stat.desc(distancias)[c("mean","var","std.dev","range",
+                                   "median","min","max")]
+names(tabla_3)<-c("Media","Varianza","Desviacion tipica","Rango",
+                    "Mediana","Minimo","Maximo")
+tabla_3
+@
+
+Por último, para mostrar los cuántiles hemos creado una última tabla.
+<<>>=
+cuantiles<-c(summary(distancias),cuant54_3)
+cuantiles_3<-cuantiles[order(unlist(cuantiles))]
+cuantiles_3
+@
+
+\end{document}
